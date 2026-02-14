@@ -52,6 +52,41 @@ OpenAI GPT-3.5-turboを使用しています。
 - Node.js
 - OpenAI API
 
+## Vercelへのデプロイ
+
+### 1. Vercelにログイン
+```bash
+npm i -g vercel
+vercel login
+```
+
+### 2. 環境変数を設定
+Vercelのダッシュボードで以下を設定：
+
+**Settings → Environment Variables**
+
+| Variable Name | Value |
+|--------------|-------|
+| `OPENAI_API_KEY` | あなたのOpenAI APIキー |
+
+**手順：**
+1. Vercelダッシュボードでプロジェクトを選択
+2. **Settings** タブをクリック
+3. **Environment Variables** セクションに移動
+4. 以下を入力：
+   - Name: `OPENAI_API_KEY`
+   - Value: あなたのOpenAI APIキー
+   - Environment: Production, Preview, Development すべてにチェック
+5. **Save** をクリック
+
+### 3. デプロイ
+```bash
+cd C:\Users\spark\.gemini\antigravity\scratch\test
+vercel
+```
+
+デプロイ後、Vercelが提供するURLでアクセスできます！
+
 ## ライセンス
 
 MIT
