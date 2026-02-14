@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ドラえもんの自己紹介</title>
+    <title>ロボ助の自己紹介</title>
     <style>
         * {
             margin: 0;
@@ -32,106 +32,108 @@
             margin-bottom: 40px;
         }
 
-        .doraemon-icon {
+        .robot-icon {
             width: 200px;
             height: 200px;
             margin: 0 auto 20px;
-            background: #0095d9;
-            border-radius: 50%;
+            background: #00b894;
+            border-radius: 20px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 149, 217, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.3);
         }
 
-        .face {
-            width: 180px;
-            height: 160px;
-            background: white;
+        .antenna {
+            width: 4px;
+            height: 30px;
+            background: #2d3436;
+            position: absolute;
+            top: -25px;
+            left: 98px;
+        }
+
+        .antenna-ball {
+            width: 12px;
+            height: 12px;
+            background: #ff6348;
             border-radius: 50%;
             position: absolute;
-            bottom: 20px;
-            left: 10px;
+            top: -30px;
+            left: 94px;
+        }
+
+        .screen {
+            width: 160px;
+            height: 120px;
+            background: #74b9ff;
+            border: 4px solid #2d3436;
+            border-radius: 10px;
+            position: absolute;
+            top: 30px;
+            left: 16px;
         }
 
         .eye {
-            width: 40px;
-            height: 45px;
-            background: white;
-            border: 3px solid #000;
-            border-radius: 50%;
-            position: absolute;
-            top: 20px;
-        }
-
-        .eye-left { left: 40px; }
-        .eye-right { right: 40px; }
-
-        .pupil {
-            width: 12px;
-            height: 12px;
-            background: #000;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 8px;
-            left: 14px;
-        }
-
-        .nose {
-            width: 25px;
-            height: 25px;
-            background: #ff0000;
-            border-radius: 50%;
-            position: absolute;
-            top: 50px;
-            left: 77px;
-        }
-
-        .whiskers {
-            position: absolute;
-            width: 60px;
-            height: 2px;
-            background: #000;
-        }
-
-        .whisker-left-1 { top: 80px; left: -10px; transform: rotate(-10deg); }
-        .whisker-left-2 { top: 90px; left: -10px; }
-        .whisker-left-3 { top: 100px; left: -10px; transform: rotate(10deg); }
-        .whisker-right-1 { top: 80px; right: -10px; transform: rotate(10deg); }
-        .whisker-right-2 { top: 90px; right: -10px; }
-        .whisker-right-3 { top: 100px; right: -10px; transform: rotate(-10deg); }
-
-        .mouth {
-            width: 90px;
-            height: 60px;
-            border: 3px solid #000;
-            border-top: none;
-            border-radius: 0 0 90px 90px;
-            position: absolute;
-            top: 62px;
-            left: 45px;
-        }
-
-        .mouth-line {
-            width: 2px;
-            height: 20px;
-            background: #000;
-            position: absolute;
-            top: -20px;
-            left: 44px;
-        }
-
-        .bell {
             width: 30px;
             height: 30px;
-            background: #ffd700;
-            border: 3px solid #000;
+            background: #2d3436;
             border-radius: 50%;
             position: absolute;
-            bottom: -15px;
-            left: 85px;
+            top: 35px;
         }
 
+        .eye-left { left: 35px; }
+        .eye-right { right: 35px; }
+
+        .eye-light {
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+        .smile {
+            width: 80px;
+            height: 40px;
+            border: 4px solid #2d3436;
+            border-top: none;
+            border-radius: 0 0 80px 80px;
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+        }
+
+        .control-panel {
+            width: 160px;
+            height: 30px;
+            background: #dfe6e9;
+            border: 2px solid #2d3436;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 15px;
+            left: 16px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #2d3436;
+        }
+
+        .button-red { background: #ff6348; }
+        .button-yellow { background: #ffd32a; }
+        .button-green { background: #00b894; }
+        .button-blue { background: #74b9ff; }
+
         h1 {
-            color: #0095d9;
+            color: #00b894;
             font-size: 2.5em;
             margin-bottom: 10px;
         }
@@ -147,11 +149,11 @@
             padding: 30px;
             border-radius: 20px;
             margin-bottom: 30px;
-            border-left: 5px solid #0095d9;
+            border-left: 5px solid #00b894;
         }
 
         .intro-section h2 {
-            color: #0095d9;
+            color: #00b894;
             margin-bottom: 15px;
             font-size: 1.5em;
         }
@@ -170,7 +172,7 @@
         }
 
         .feature-card {
-            background: linear-gradient(135deg, #0095d9 0%, #00b4d8 100%);
+            background: linear-gradient(135deg, #00b894 0%, #00d2a0 100%);
             padding: 20px;
             border-radius: 15px;
             text-align: center;
@@ -195,12 +197,12 @@
             padding: 30px;
             border-radius: 20px;
             margin-bottom: 30px;
-            border-left: 5px solid #ffd700;
+            border-left: 5px solid #ffd32a;
             scroll-margin-top: 20px;
         }
 
         .detail-section h2 {
-            color: #0095d9;
+            color: #00b894;
             margin-bottom: 15px;
             font-size: 1.5em;
         }
@@ -221,7 +223,7 @@
         .back-link {
             display: inline-block;
             margin-top: 15px;
-            color: #0095d9;
+            color: #00b894;
             text-decoration: none;
             font-weight: bold;
         }
@@ -258,7 +260,7 @@
             50% { transform: translateY(-10px); }
         }
 
-        .doraemon-icon {
+        .robot-icon {
             animation: float 3s ease-in-out infinite;
         }
     </style>
@@ -266,141 +268,139 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="doraemon-icon">
-                <div class="face">
+            <div class="robot-icon">
+                <div class="antenna"></div>
+                <div class="antenna-ball"></div>
+                <div class="screen">
                     <div class="eye eye-left">
-                        <div class="pupil"></div>
+                        <div class="eye-light"></div>
                     </div>
                     <div class="eye eye-right">
-                        <div class="pupil"></div>
+                        <div class="eye-light"></div>
                     </div>
-                    <div class="nose"></div>
-                    <div class="whiskers whisker-left-1"></div>
-                    <div class="whiskers whisker-left-2"></div>
-                    <div class="whiskers whisker-left-3"></div>
-                    <div class="whiskers whisker-right-1"></div>
-                    <div class="whiskers whisker-right-2"></div>
-                    <div class="whiskers whisker-right-3"></div>
-                    <div class="mouth">
-                        <div class="mouth-line"></div>
-                    </div>
+                    <div class="smile"></div>
                 </div>
-                <div class="bell"></div>
+                <div class="control-panel">
+                    <div class="button button-red"></div>
+                    <div class="button button-yellow"></div>
+                    <div class="button button-green"></div>
+                    <div class="button button-blue"></div>
+                </div>
             </div>
-            <h1>ドラえもんだよ！</h1>
-            <p class="subtitle">22世紀からやってきたネコ型ロボット</p>
+            <h1>ロボ助です！</h1>
+            <p class="subtitle">未来からやってきたサポートロボット</p>
         </div>
 
         <div class="intro-section">
             <h2>🤖 自己紹介</h2>
             <p>
-                はじめまして！ぼく、ドラえもん！<br>
-                22世紀からタイムマシンでやってきた、ネコ型ロボットなんだ。<br>
-                のび太くんのお世話係として、毎日いろんな道具を使って助けているよ。<br>
-                どら焼きが大好きで、ネズミは大の苦手なんだ〜！
+                はじめまして！僕の名前はロボ助！<br>
+                未来のテクノロジーを搭載したサポートロボットとして開発されました。<br>
+                みんなの日常をもっと便利に、もっと楽しくするのがミッションです。<br>
+                最新のAI技術と便利な機能で、あなたの生活をサポートします！
             </p>
         </div>
 
         <div class="intro-section">
-            <h2>📊 基本データ</h2>
+            <h2>📊 基本スペック</h2>
             <p>
-                <strong>誕生日:</strong> 2112年9月3日<br>
-                <strong>身長:</strong> 129.3cm<br>
-                <strong>体重:</strong> 129.3kg<br>
-                <strong>好きな食べ物:</strong> どら焼き（1日に10個は食べるよ！）<br>
-                <strong>特技:</strong> 四次元ポケットから道具を出すこと
+                <strong>型番:</strong> RB-2100<br>
+                <strong>高さ:</strong> 130cm<br>
+                <strong>重量:</strong> 125kg<br>
+                <strong>電源:</strong> 高効率クリーンエネルギー<br>
+                <strong>得意分野:</strong> 問題解決支援、タスク管理、情報提供
             </p>
         </div>
 
-        <h2 style="text-align: center; color: #0095d9; margin-bottom: 20px;">✨ できること</h2>
+        <h2 style="text-align: center; color: #00b894; margin-bottom: 20px;">✨ 搭載機能</h2>
         <div class="features">
-            <a href="#pocket" class="feature-card">
-                <h3>🎒 四次元ポケット</h3>
-                <p>未来の道具がたくさん！</p>
+            <a href="#storage" class="feature-card">
+                <h3>💾 多次元ストレージ</h3>
+                <p>大容量のデータ保存機能</p>
             </a>
-            <a href="#timemachine" class="feature-card">
-                <h3>⏰ タイムマシン</h3>
-                <p>過去や未来へ自由に移動</p>
+            <a href="#navigator" class="feature-card">
+                <h3>🗺️ スマートナビゲーター</h3>
+                <p>効率的な移動をサポート</p>
             </a>
-            <a href="#anyweredoor" class="feature-card">
-                <h3>🚪 どこでもドア</h3>
-                <p>どこへでも一瞬で移動</p>
+            <a href="#portal" class="feature-card">
+                <h3>🌐 ポータルゲート</h3>
+                <p>距離を超えた移動システム</p>
             </a>
-            <a href="#memorybread" class="feature-card">
-                <h3>🍞 暗記パン</h3>
-                <p>覚えたいことを簡単に暗記</p>
+            <a href="#learning" class="feature-card">
+                <h3>📚 学習アシスタント</h3>
+                <p>効率的な学習をサポート</p>
             </a>
         </div>
 
-        <div id="pocket" class="detail-section">
-            <h2>🎒 四次元ポケット</h2>
+        <div id="storage" class="detail-section">
+            <h2>💾 多次元ストレージ</h2>
             <p>
-                ぼくのお腹についている四次元ポケットは、22世紀の最先端技術で作られた特別なポケットなんだ！
+                僕のボディに搭載された多次元ストレージシステムは、最先端の空間技術を活用しています！
             </p>
             <p><strong>特徴：</strong></p>
             <ul>
-                <li>未来の世界から、1300種類以上のひみつ道具を取り出せるよ</li>
-                <li>四次元空間につながっているから、どんなに大きな道具でも入っちゃう</li>
-                <li>欲しい道具を思い浮かべると、すぐに取り出せるんだ</li>
-                <li>タケコプター、タイムふろしき、スモールライトなど便利な道具がいっぱい！</li>
+                <li>1000種類以上の便利ツールとガジェットを保管可能</li>
+                <li>空間圧縮技術により、大きなアイテムもコンパクトに収納</li>
+                <li>音声コマンドで瞬時にアイテムを取り出せます</li>
+                <li>ドローン、スマートツール、携帯デバイスなど多彩なラインナップ</li>
             </ul>
             <p>
-                のび太くんが困ったときは、このポケットから最適な道具を選んで助けてあげるよ！
+                必要なものを必要なときに。効率的な問題解決をサポートします！
             </p>
             <a href="#" class="back-link">↑ 戻る</a>
         </div>
 
-        <div id="timemachine" class="detail-section">
-            <h2>⏰ タイムマシン</h2>
+        <div id="navigator" class="detail-section">
+            <h2>🗺️ スマートナビゲーター</h2>
             <p>
-                のび太くんの机の引き出しの中に隠されている、時間旅行用のマシンだよ！
+                高精度GPSとAIアルゴリズムを組み合わせた次世代ナビゲーションシステムです！
             </p>
             <p><strong>できること：</strong></p>
             <ul>
-                <li>過去や未来、好きな時代に自由に移動できる</li>
-                <li>恐竜時代や江戸時代など、歴史の現場を見に行ける</li>
-                <li>未来の世界を見学して、科学技術の進歩を体験できる</li>
-                <li>時間犯罪を取り締まるタイムパトロールも使っているんだ</li>
+                <li>リアルタイムで最適ルートを計算・提案</li>
+                <li>交通状況、天候、イベント情報を統合して判断</li>
+                <li>バーチャルマップで目的地を事前にプレビュー</li>
+                <li>音声ガイダンスで迷わず目的地に到着</li>
             </ul>
             <p>
-                時間を超えた冒険ができるけど、歴史を変えちゃうと大変だから注意が必要だよ！
+                道に迷う心配はもうありません。スマートな移動をサポートします！
             </p>
             <a href="#" class="back-link">↑ 戻る</a>
         </div>
 
-        <div id="anyweredoor" class="detail-section">
-            <h2>🚪 どこでもドア</h2>
+        <div id="portal" class="detail-section">
+            <h2>🌐 ポータルゲート</h2>
             <p>
-                行きたい場所を思い浮かべてドアを開けると、一瞬でそこに行けちゃう便利な道具だよ！
+                先進的な転送技術を活用した、革新的な移動支援システムです！
             </p>
-            <p><strong>使い方：</strong></p>
+            <p><strong>仕組み：</strong></p>
             <ul>
-                <li>ドアノブを回す前に、行き先を明確にイメージする</li>
-                <li>地球上ならどこでも瞬時に移動できる（10光年以内なら宇宙もOK！）</li>
-                <li>南極やエベレスト山頂、海の底だって行けちゃう</li>
-                <li>通学時間ゼロ！遅刻の心配もなくなるよ</li>
+                <li>目的地を設定すると、最適な移動手段を提案</li>
+                <li>公共交通機関との連携で効率的な移動をサポート</li>
+                <li>遠隔地への移動計画を自動で最適化</li>
+                <li>移動時間とコストを大幅に削減</li>
             </ul>
             <p>
-                ただし、行ったことがない場所や地図にない場所は、イメージが曖昧だとうまく行けないこともあるんだ。
+                時間を有効活用できるように、あなたの移動をスマートにサポートします。
             </p>
             <a href="#" class="back-link">↑ 戻る</a>
         </div>
 
-        <div id="memorybread" class="detail-section">
-            <h2>🍞 暗記パン</h2>
+        <div id="learning" class="detail-section">
+            <h2>📚 学習アシスタント</h2>
             <p>
-                テスト前の強い味方！覚えたいことを簡単に暗記できる魔法のパンだよ！
+                AIを活用した個別最適化学習システムで、効率的な学習をサポートします！
             </p>
-            <p><strong>使い方：</strong></p>
+            <p><strong>機能：</strong></p>
             <ul>
-                <li>暗記したい文章や絵にパンを押し付けると、内容が写る</li>
-                <li>写ったパンを食べると、内容が頭に入る</li>
-                <li>教科書のページでも、ノートでも、何でも写せるよ</li>
-                <li>テスト勉強や資格試験の準備に便利！</li>
+                <li>学習内容を分析し、最適な学習プランを提案</li>
+                <li>理解度に応じた問題を自動生成</li>
+                <li>視覚的な資料で記憶の定着をサポート</li>
+                <li>定期的な復習リマインダーで長期記憶を強化</li>
             </ul>
             <p>
-                <strong>注意点：</strong> お腹がいっぱいになると忘れちゃうし、トイレに行くと全部忘れちゃうから要注意！
-                やっぱり本当の勉強も大切だよ。
+                <strong>ポイント：</strong> 継続的な学習と理解の深化を重視。
+                一夜漬けではなく、本当の学力向上を目指します！
             </p>
             <a href="#" class="back-link">↑ 戻る</a>
         </div>
@@ -408,15 +408,15 @@
         <div class="intro-section">
             <h2>💭 メッセージ</h2>
             <p>
-                困ったことがあったら、いつでも相談してね！<br>
-                ぼくの四次元ポケットには、きっと役に立つ道具があるはずだよ。<br>
-                一緒に楽しい冒険をしよう！
+                困ったことやチャレンジしたいことがあれば、いつでもサポートします！<br>
+                最新の技術と豊富な機能で、あなたの可能性を広げるお手伝いをします。<br>
+                一緒に素晴らしい未来を創りましょう！
             </p>
         </div>
 
         <div class="cta">
-            <button class="cta-button" onclick="alert('ありがとう！一緒に楽しもうね！🎉')">
-                仲良くしてね！
+            <button class="cta-button" onclick="alert('ありがとうございます！一緒に楽しい未来を創りましょう！🚀')">
+                よろしくお願いします！
             </button>
         </div>
     </div>
