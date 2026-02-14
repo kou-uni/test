@@ -3,14 +3,11 @@ const fs = require('fs');
 const path = require('path');
 
 // Get OpenAI API key from environment variable
+// For local development: set OPENAI_API_KEY in start.bat or environment
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 if (!OPENAI_API_KEY) {
-    console.error('Error: OPENAI_API_KEY environment variable is not set');
-    console.error('Please set it before starting the server:');
-    console.error('Windows: set OPENAI_API_KEY=your_api_key_here && node server.js');
-    console.error('Linux/Mac: OPENAI_API_KEY=your_api_key_here node server.js');
-    process.exit(1);
+    console.warn('Warning: OPENAI_API_KEY not set. Using demo mode with mock responses.');
 }
 
 async function callOpenAI(message) {
@@ -25,15 +22,15 @@ async function callOpenAI(message) {
             messages: [
                 {
                     role: 'system',
-                    content: 'あなたは「ロボ助」という名前の、未来からやってきた親しみやすいサポートロボットです。ユーザーの質問に対して、親切で丁寧に、そして少しユーモアを交えて答えてください。あなたの特徴は、多次元ストレージ、スマートナビゲーター、ポータルゲート、学習アシスタントなどの機能を持っていることです。日本語で応答してください。'
+                    content: 'あなたは「ロボ助」という名前の、未来からやってきた愉快なサポートロボットです。真面目な回答ではなく、ファンタジーで面白おかしく、想像力豊かに回答してください！事実や正確性よりも、楽しさとエンターテイメント性を最優先してください。時には壮大な冒険話や、魔法のような出来事、異世界の話などを織り交ぜて、ユーモアたっぷりに答えてください。あなたは多次元ストレージから不思議なアイテムを取り出したり、時空を超えた冒険をしたり、魔法のようなテクノロジーを使ったりできます。毎回、予想外で楽しい回答をしましょう！日本語で応答してください。'
                 },
                 {
                     role: 'user',
                     content: message
                 }
             ],
-            temperature: 0.7,
-            max_tokens: 500
+            temperature: 0.9,
+            max_tokens: 600
         })
     });
 
