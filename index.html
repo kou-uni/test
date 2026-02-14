@@ -263,6 +263,154 @@
         .robot-icon {
             animation: float 3s ease-in-out infinite;
         }
+
+        .chat-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .chat-container.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #00b894 0%, #00d2a0 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            line-height: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #00b894;
+            color: white;
+        }
+
+        .message.robot {
+            align-self: flex-start;
+            background: #f0f8ff;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.loading {
+            align-self: flex-start;
+            background: #f0f8ff;
+            color: #666;
+            font-style: italic;
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: #00b894;
+        }
+
+        .send-button {
+            background: #00b894;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .send-button:hover {
+            background: #00a383;
+        }
+
+        .send-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .chat-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00b894 0%, #00d2a0 100%);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 184, 148, 0.4);
+            transition: transform 0.3s;
+            z-index: 999;
+        }
+
+        .chat-fab:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-fab.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -420,5 +568,118 @@
             </button>
         </div>
     </div>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" id="chatFab">💬</button>
+
+    <!-- Chat Container -->
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3>ロボ助とチャット</h3>
+            <button class="close-chat" id="closeChat">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message robot">
+                こんにちは！僕はロボ助です。何かお手伝いできることはありますか？
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" placeholder="メッセージを入力...">
+            <button class="send-button" id="sendButton">送信</button>
+        </div>
+    </div>
+
+    <script>
+        const chatFab = document.getElementById('chatFab');
+        const chatContainer = document.getElementById('chatContainer');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+
+        chatFab.addEventListener('click', () => {
+            chatContainer.classList.add('open');
+            chatFab.classList.add('hidden');
+            chatInput.focus();
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatContainer.classList.remove('open');
+            chatFab.classList.remove('hidden');
+        });
+
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Disable input while processing
+            chatInput.disabled = true;
+            sendButton.disabled = true;
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = message;
+            chatMessages.appendChild(userMessage);
+
+            // Clear input
+            chatInput.value = '';
+
+            // Add loading message
+            const loadingMessage = document.createElement('div');
+            loadingMessage.className = 'message loading';
+            loadingMessage.textContent = '考え中...';
+            chatMessages.appendChild(loadingMessage);
+
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                // Call API
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message }),
+                });
+
+                const data = await response.json();
+
+                // Remove loading message
+                chatMessages.removeChild(loadingMessage);
+
+                // Add robot response
+                const robotMessage = document.createElement('div');
+                robotMessage.className = 'message robot';
+                robotMessage.textContent = data.reply;
+                chatMessages.appendChild(robotMessage);
+            } catch (error) {
+                console.error('Error:', error);
+                chatMessages.removeChild(loadingMessage);
+
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'message robot';
+                errorMessage.textContent = 'すみません、エラーが発生しました。もう一度お試しください。';
+                chatMessages.appendChild(errorMessage);
+            }
+
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Re-enable input
+            chatInput.disabled = false;
+            sendButton.disabled = false;
+            chatInput.focus();
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>
